@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Local Python runtime copies (regenerate with relink_launcher.bat)
+pythonw_pdfmaster.exe
+python3.dll
+python312.dll
+pyvenv.cfg
+
+# Runtime state
+.app.lock
+error.log
+*.log
+
+# OS
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Internal project catalog note (not for publication)
+_FOLDER_INFO.md

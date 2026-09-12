@@ -1,0 +1,5 @@
+* text=auto
+
+# Windows batch files must keep CRLF and their CP950 (Big5) bytes intact
+*.bat -text
+*.cmd -text
