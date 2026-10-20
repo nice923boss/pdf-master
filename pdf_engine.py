@@ -147,6 +147,9 @@ def save_encrypted(doc: fitz.Document, output_path: str,
     perm = fitz.PDF_PERM_PRINT | fitz.PDF_PERM_COPY | fitz.PDF_PERM_ANNOTATE
     doc.save(
         output_path,
+        garbage=4,
+        deflate=True,
+        clean=True,
         encryption=fitz.PDF_ENCRYPT_AES_256,
         user_pw=user_password,
         owner_pw=owner_password,
@@ -445,9 +448,14 @@ def add_signature(doc: fitz.Document,
 
 
 def save_pdf(doc: fitz.Document, output_path: str,
-             garbage: int = 1, deflate: bool = True):
-    """Save document to file."""
-    doc.save(output_path, garbage=garbage, deflate=deflate)
+             garbage: int = 4, deflate: bool = True):
+    """Save document to file.
+
+    garbage=4 merges duplicate streams and clean=True drops resources a page
+    never draws; without both, page-by-page insert_pdf copies a shared
+    /Resources dict (every image in the source) into every output page.
+    """
+    doc.save(output_path, garbage=garbage, deflate=deflate, clean=True)
 
 
 def get_page_info(doc: fitz.Document, page_num: int) -> dict:
